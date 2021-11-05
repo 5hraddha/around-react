@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Main from './Main';
+import PopupWithForm from './PopupWithForm';
 import Footer from './Footer';
 
 function App() {
@@ -18,83 +19,62 @@ function App() {
       <Footer />
 
       {/* update avatar popup box */}
-      <div className="popup popup_rel_avatar">
-        <div className="popup__container">
-          <form className="popup__form" name="avatar-update" action="#" noValidate>
-            <h2 className="popup__title">Change Profile Picture</h2>
-            <input 
-              className="popup__input" 
-              type="url" 
-              id="avatarlink-input" 
-              name="avatarlink" 
-              placeholder="Image link" 
+      <PopupWithForm name="avatar" title="Change Profile Picture" btnLabel="Save">
+        <input
+              className="popup__input"
+              type="url"
+              id="avatarlink-input"
+              name="avatarlink"
+              placeholder="Image link"
               required />
-            <span id="avatarlink-input-error" className="popup__error"></span>
-            <button className="popup__submit" type="submit" aria-label="Save Avatar">Save</button>
-          </form>
-          <button className="popup__close-btn" type="button" aria-label="Close Popup"></button>
-        </div>
-      </div>
+        <span id="avatarlink-input-error" className="popup__error"></span>
+      </PopupWithForm>
 
       {/* edit profile popup box */}
-      <div className="popup popup_rel_profile">
-        <div className="popup__container">
-          <form className="popup__form" name="profile-edit" action="#" noValidate>
-            <h2 className="popup__title">Edit profile</h2>
-            <input 
-              className="popup__input" 
-              type="text" 
-              id="name-input" 
-              name="title" 
-              placeholder="Name" 
+      <PopupWithForm name="profile" title="Edit profile" btnLabel="Save">
+        <input
+              className="popup__input"
+              type="text"
+              id="name-input"
+              name="title"
+              placeholder="Name"
               minLength="2"
               maxLength="40"
               required />
-            <span id="name-input-error" className="popup__error"></span>
-            <input 
-              className="popup__input" 
-              type="text" 
-              id="about-input" 
-              name="subtitle" 
-              placeholder="About me" 
+        <span id="name-input-error" className="popup__error"></span>
+        <input
+              className="popup__input"
+              type="text"
+              id="about-input"
+              name="subtitle"
+              placeholder="About me"
               minLength="2"
               maxLength="200"
               required />
-              <span id="about-input-error" className="popup__error"></span>
-            <button className="popup__submit" type="submit" aria-label="Save Profile">Save</button>
-          </form>
-          <button className="popup__close-btn" type="button" aria-label="Close Popup"></button>
-        </div>
-      </div>
+        <span id="about-input-error" className="popup__error"></span>
+      </PopupWithForm>
 
       {/* add place popup box */}
-      <div className="popup popup_rel_place">
-        <div className="popup__container">
-          <form className="popup__form" name="place-add" action="#" noValidate>
-            <h2 className="popup__title">New Place</h2>
-            <input 
-              className="popup__input" 
-              type="text" 
-              id="place-input" 
-              name="name" 
-              placeholder="Title" 
+      <PopupWithForm name="place" title="New Place" btnLabel="Create">
+        <input
+              className="popup__input"
+              type="text"
+              id="place-input"
+              name="name"
+              placeholder="Title"
               minLength="1"
               maxLength="30"
               required />
-            <span id="place-input-error" className="popup__error"></span>
-            <input 
-              className="popup__input" 
-              type="url" 
-              id="link-input" 
-              name="link" 
-              placeholder="Image link" 
+        <span id="place-input-error" className="popup__error"></span>
+        <input
+              className="popup__input"
+              type="url"
+              id="link-input"
+              name="link"
+              placeholder="Image link"
               required />
-            <span id="link-input-error" className="popup__error"></span>
-            <button className="popup__submit" type="submit" aria-label="Create Place">Create</button>
-          </form>
-          <button className="popup__close-btn" type="button" aria-label="Close Popup"></button>
-        </div>
-      </div>
+        <span id="link-input-error" className="popup__error"></span>
+      </PopupWithForm>
 
       {/* view image popup box */}
       <div className="popup popup_rel_image">
@@ -110,15 +90,7 @@ function App() {
     </div>
 
     {/* confirm delete image card popup box */}
-    <div className="popup popup_rel_delete">
-      <div className="popup__container">
-        <form className="popup__form" name="place-delete" action="#" noValidate>
-          <h2 className="popup__title popup__title_rel_delete">Are you sure?</h2>
-          <button className="popup__submit popup__submit_rel_delete" type="submit" aria-label="Confirm Delete">Yes</button>
-        </form>
-        <button className="popup__close-btn" type="button" aria-label="Close Popup"></button>
-      </div>
-    </div>
+    <PopupWithForm name="delete" title="Are you sure?" btnLabel="Yes" />
 
     {/* Element Template */}
     <template id="element-template">
