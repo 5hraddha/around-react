@@ -2,13 +2,13 @@ import React from 'react';
 import Header from './Header';
 import Main from './Main';
 import PopupWithForm from './PopupWithForm';
+import ImagePopup from './ImagePopup';
 import Footer from './Footer';
 
 function App() {
   return (
   <div className="page">
     <div className="page__wrapper">
-
       {/* page header */}
       <Header />
 
@@ -77,36 +77,26 @@ function App() {
       </PopupWithForm>
 
       {/* view image popup box */}
-      <div className="popup popup_rel_image">
-        <div className="popup__container popup__container_rel_image">
-          <figure className="popup__figure">
-            <img className="popup__img" src="#" alt="#" />
-            <figcaption className="popup__caption"></figcaption>
-          </figure>
-          <button className="popup__close-btn popup__close-btn_rel_image" type="button" aria-label="Close Popup"></button>
-        </div>
-      </div>
+      <ImagePopup />
 
-    </div>
+      {/* confirm delete image card popup box */}
+      <PopupWithForm name="delete" title="Are you sure?" btnLabel="Yes" />
 
-    {/* confirm delete image card popup box */}
-    <PopupWithForm name="delete" title="Are you sure?" btnLabel="Yes" />
-
-    {/* Element Template */}
-    <template id="element-template">
-      <li className="element">
-        <img className="element__img" src="#" alt="#" />
-        <div className="element__text">
-          <h2 className="element__title"></h2>
-          <div className="element__likes">
-            <button className="element__like-btn" type="button" aria-label="Like Image"></button>
-            <p className="element__like-count">0</p>
+      {/* Element Template */}
+      <template id="element-template">
+        <li className="element">
+          <img className="element__img" src="#" alt="#" />
+          <div className="element__text">
+            <h2 className="element__title"></h2>
+            <div className="element__likes">
+              <button className="element__like-btn" type="button" aria-label="Like Image"></button>
+              <p className="element__like-count">0</p>
+            </div>
           </div>
-        </div>
-        <button className="element__delete-btn" type="button" aria-label="Delete Image"></button>
-      </li>
-    </template>
-
+          <button className="element__delete-btn" type="button" aria-label="Delete Image"></button>
+        </li>
+      </template>
+    </div>
   </div>
   );
 }

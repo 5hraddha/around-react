@@ -22,7 +22,7 @@ function PopupWithForm(props) {
           {btnLabel}
         </button>
       </form>
-      <button className="popup__close-btn" type="button" aria-label="Close Popup"></button>
+      <button className="popup__close-btn" type="button" aria-label="Close popup"></button>
     </div>
   </div>
   );
