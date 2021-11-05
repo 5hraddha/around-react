@@ -6,6 +6,18 @@ import ImagePopup from './ImagePopup';
 import Footer from './Footer';
 
 function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+
+  const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
+  const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
+  const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true);
+
+  const handleCardClick = () => {
+
+  }
+
   return (
   <div className="page">
     <div className="page__wrapper">
@@ -13,13 +25,18 @@ function App() {
       <Header />
 
       {/* main content of the page */}
-      <Main />
+      <Main
+            onEditProfileClick={handleEditProfileClick}
+            onAddPlaceClick={handleAddPlaceClick}
+            onEditAvatarClick={handleEditAvatarClick}
+            onCardClick={handleCardClick}
+      />
 
       {/* page footer */}
       <Footer />
 
       {/* update avatar popup box */}
-      <PopupWithForm name="avatar" title="Change Profile Picture" btnLabel="Save">
+      <PopupWithForm name="avatar" title="Change Profile Picture" btnLabel="Save" isOpen={isEditAvatarPopupOpen}>
         <input
               className="popup__input"
               type="url"
@@ -31,7 +48,7 @@ function App() {
       </PopupWithForm>
 
       {/* edit profile popup box */}
-      <PopupWithForm name="profile" title="Edit profile" btnLabel="Save">
+      <PopupWithForm name="profile" title="Edit profile" btnLabel="Save" isOpen={isEditProfilePopupOpen}>
         <input
               className="popup__input"
               type="text"
@@ -55,7 +72,7 @@ function App() {
       </PopupWithForm>
 
       {/* add place popup box */}
-      <PopupWithForm name="place" title="New Place" btnLabel="Create">
+      <PopupWithForm name="place" title="New Place" btnLabel="Create" isOpen={isAddPlacePopupOpen}>
         <input
               className="popup__input"
               type="text"

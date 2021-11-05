@@ -8,21 +8,26 @@ function PopupWithForm(props) {
   const {  } = props;
 
   // Get other values from the props
-  const {name, title, btnLabel} = props;
+  const {name, title, btnLabel, isOpen} = props;
 
   return (
-    <div className={`popup popup_rel_${name}`}>
+    <div className={`popup popup_rel_${name} ${isOpen && 'popup_opened'}`}>
     <div className="popup__container">
       <form className="popup__form" name={name} action="#" noValidate>
-        <h2 className="popup__title">
-          {title}
-        </h2>
+        <h2 className="popup__title">{title}</h2>
         {children}
-        <button className="popup__submit" type="submit" aria-label={`${btnLabel} ${name}`}>
+        <button
+                className="popup__submit"
+                type="submit"
+                aria-label={`${btnLabel} ${name}`}>
           {btnLabel}
         </button>
       </form>
-      <button className="popup__close-btn" type="button" aria-label="Close popup"></button>
+      <button
+              className="popup__close-btn"
+              type="button"
+              aria-label="Close popup">
+      </button>
     </div>
   </div>
   );
