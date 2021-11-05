@@ -1,5 +1,7 @@
 import React from 'react';
-import pageLogo from '../images/logo.svg';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
 
 function App() {
   return (
@@ -7,38 +9,13 @@ function App() {
     <div className="page__wrapper">
 
       {/* page header */}
-      <header className="header">
-        <img className="logo" src={pageLogo} alt="logo of the webpage having text around the US" />
-      </header>
+      <Header />
 
       {/* main content of the page */}
-      <main className="content">
-        {/* section containing user info, functionality to edit it and to add new images */}
-        <section className="profile">
-          <div className="profile__avatar-container">
-            <img className="profile__avatar" alt="profile picture" />
-            <button className="profile__avatar-update-button" type="button" aria-label="Update Profile Picture"></button>
-          </div>
-          <div className="profile__info">
-            <div className="profile__main-content">
-              <h1 className="profile__title"></h1>
-              <button className="profile__edit-btn" type="button" aria-label="Edit Profile"></button>
-            </div>
-            <p className="profile__subtitle"></p>
-          </div>
-          <button className="profile__add-btn" type="button" aria-label="Add Image"></button>
-        </section>
-
-        {/* section containing all the cards having images and functionality to like/unlike */}
-        <section>
-          <ul className="elements"></ul>
-        </section>
-      </main>
+      <Main />
 
       {/* page footer */}
-      <footer className="footer">
-        <p className="footer__text">© 2021 Around The U.S.</p>
-      </footer>
+      <Footer />
 
       {/* update avatar popup box */}
       <div className="popup popup_rel_avatar">
