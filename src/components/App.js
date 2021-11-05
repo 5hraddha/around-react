@@ -18,6 +18,12 @@ function App() {
 
   }
 
+  const closeAllPopups = () => {
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+  }
+
   return (
   <div className="page">
     <div className="page__wrapper">
@@ -36,7 +42,12 @@ function App() {
       <Footer />
 
       {/* update avatar popup box */}
-      <PopupWithForm name="avatar" title="Change Profile Picture" btnLabel="Save" isOpen={isEditAvatarPopupOpen}>
+      <PopupWithForm
+                    name="avatar"
+                    title="Change Profile Picture"
+                    btnLabel="Save"
+                    isOpen={isEditAvatarPopupOpen}
+                    onClose={closeAllPopups}>
         <input
               className="popup__input"
               type="url"
@@ -48,7 +59,12 @@ function App() {
       </PopupWithForm>
 
       {/* edit profile popup box */}
-      <PopupWithForm name="profile" title="Edit profile" btnLabel="Save" isOpen={isEditProfilePopupOpen}>
+      <PopupWithForm
+                    name="profile"
+                    title="Edit profile"
+                    btnLabel="Save"
+                    isOpen={isEditProfilePopupOpen}
+                    onClose={closeAllPopups}>
         <input
               className="popup__input"
               type="text"
@@ -72,7 +88,12 @@ function App() {
       </PopupWithForm>
 
       {/* add place popup box */}
-      <PopupWithForm name="place" title="New Place" btnLabel="Create" isOpen={isAddPlacePopupOpen}>
+      <PopupWithForm
+                    name="place"
+                    title="New Place"
+                    btnLabel="Create"
+                    isOpen={isAddPlacePopupOpen}
+                    onClose={closeAllPopups}>
         <input
               className="popup__input"
               type="text"
@@ -94,7 +115,7 @@ function App() {
       </PopupWithForm>
 
       {/* view image popup box */}
-      <ImagePopup />
+      <ImagePopup onClose={closeAllPopups} />
 
       {/* confirm delete image card popup box */}
       <PopupWithForm name="delete" title="Are you sure?" btnLabel="Yes" />

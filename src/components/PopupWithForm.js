@@ -5,7 +5,7 @@ function PopupWithForm(props) {
   const { children } = props; 
 
   // Get event handlers from the props
-  const {  } = props;
+  const { onClose } = props;
 
   // Get other values from the props
   const {name, title, btnLabel, isOpen} = props;
@@ -26,7 +26,8 @@ function PopupWithForm(props) {
       <button
               className="popup__close-btn"
               type="button"
-              aria-label="Close popup">
+              aria-label="Close popup"
+              onClick={onClose}>
       </button>
     </div>
   </div>
