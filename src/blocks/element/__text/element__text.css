@@ -1,0 +1,9 @@
+.element__text {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+  width: calc(100% - (15px + 21px + 5px));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

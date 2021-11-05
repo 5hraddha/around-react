@@ -1,0 +1,13 @@
+.element {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(282px, 1fr);
+  grid-template-rows: 282px 79px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  list-style: none;
+  overflow: hidden;
+}
