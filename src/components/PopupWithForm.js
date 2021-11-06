@@ -2,7 +2,7 @@ import React from 'react';
 
 function PopupWithForm(props) {
   // Get children of the PopupWithForm component from the props
-  const { children } = props; 
+  const { children } = props;
 
   // Get event handlers from the props
   const { onClose } = props;

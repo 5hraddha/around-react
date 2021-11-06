@@ -1,5 +1,5 @@
-import React from 'react';
-import pageLogo from '../images/logo.svg';
+import React        from 'react';
+import pageLogo     from '../images/logo.svg';
 
 function Header() {
   return (

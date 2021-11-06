@@ -1,17 +1,18 @@
-import React from 'react';
-import api from '../utils/api';
-import Card from './Card';
+import React      from 'react';
+import api        from '../utils/api';
+import Card       from './Card';
 
 function Main(props) {
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
-  const [cards, setCards] = React.useState([]);
+  const [userName, setUserName]                   = React.useState('');
+  const [userDescription, setUserDescription]     = React.useState('');
+  const [userAvatar, setUserAvatar]               = React.useState('');
+  const [cards, setCards]                         = React.useState([]);
 
   const {
     onEditProfileClick,
     onAddPlaceClick,
-    onEditAvatarClick
+    onEditAvatarClick,
+    onCardClick
   } = props;
 
   React.useEffect(() => {
@@ -64,7 +65,7 @@ function Main(props) {
       {/* section containing all the cards having images and functionality to like/unlike */}
       <section>
         <ul className="elements">
-          {cards.map(card => <Card key={card._id} card={card} />)}
+          {cards.map(card => <Card key={card._id} card={card} onCardClick={onCardClick} />)}
         </ul>
       </section>
     </main>

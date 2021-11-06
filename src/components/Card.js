@@ -1,10 +1,12 @@
 import React from 'react';
 
 function Card(props){
-  const { card } = props;
+  const { card, onCardClick } = props;
+  const handleClick = () => onCardClick(card);
+
   return (
     <li className="element" key={card._id}>
-      <img className="element__img" src={card.link} alt="#" />
+      <img className="element__img" src={card.link} alt={card.name} onClick={handleClick} />
       <div className="element__text">
         <h2 className="element__title">{card.name}</h2>
         <div className="element__likes">
