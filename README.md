@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+<!-- omit in toc -->
+# Project: Around The U.S.
+- [About the Project](#about-the-project)
+- [Technologies and Standards Used](#technologies-and-standards-used)
+- [Product Specification Document](#product-specification-document)
+- [Future Improvements](#future-improvements)
+- [Live Demo](#live-demo)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About the Project
 
-## Available Scripts
+![around-the-us](https://raw.githubusercontent.com/5hraddha/misc/master/images/around-the-us.png)
 
-In the project directory, you can run:
+**Around the U.S.** is a responsive website where a user can have a collection of the pictures of his journey around the US. The webpage interacts with the API endpoints using REST API calls. As of now, the functionalities available on the webpage are:
+1. When the page loads, all the existing image cards from the server loads.
+2. When the page loads, the current user's name and about info are loaded from the server.
+3. User can view the number of likes on an image card.
+4. User can also have a closer look of the images by clicking on them.
+5.  Users can close the popup by clicking on the overlay, i.e. anywhere outside the popup's borders.
 
-### `npm start`
+## Technologies and Standards Used
+**The technologies that have been used are:**
+1. HTML (Hyper Text Markup Language)
+2. CSS (Cascading Style Sheets)
+3. React.js
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**There are various tools that have been used throughout the project design and development:**
+| Tools                                             | Usage                                             |
+|---------------------------------------------------|---------------------------------------------------|
+| Figma                                             | For referring to the product design specification |
+| [TinyPng](https://tinypng.com/)                   | For JPEG/PNG Image Compression                    |
+| [SVGOMG](https://jakearchibald.github.io/svgomg/) | For refining and compressing SVGs                 |
+| [Webpack](https://webpack.js.org/)                | For bundling all the ES modules                   |
+| [Babel](https://babeljs.io/)                      | For transpiling JS code                           |
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**The main concepts that have been emphasized are:**
+1. **Responsive Web Design**
+    - The webpage has been developed following the *desktop first approach*.
+    - The webpage has been designed and developed for:  
+        - Maximum Width: `1280px`
+        - Minimum Width: `320px`
 
-### `npm test`
+2. [CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+3. [CSS Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+4. **BEM Specification**  
+  The website is using [BEM — Block Element Modifier](https://en.bem.info/methodology/quick-start/) methodology to create reusable and understandable components in CSS. The idea behind it is to divide the user interface into independent blocks. This makes interface development easy and fast and it allows reuse of existing code without copying and pasting. We are also using [Nested BEM File structure organization](https://en.bem.info/methodology/filestructure/#nested) for CSS.  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. **Git Conventional Commits Specification**  
+  We are using [Git Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/). It provides an easy set of rules for creating an explicit commit history making it easier for people to contribute to our projects by communicating the nature of changes clearly.
 
-### `npm run build`
+6. **API (Application Programming Interface)**  
+   An API is a set of definitions and protocols for building and integrating application software. It’s sometimes referred to as a contract between an information provider and an information user—establishing the content required from the consumer (the call) and the content required by the producer (the response).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Product Specification Document
+You can view the product specification document [here](https://www.figma.com/file/xQVeb8gprjukPVKXiLXS5T/Sprint-9:-Applied-JavaScript?node-id=1%3A266)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Future Improvements
+1. The data on the webpage should persist between page reloads - Done
+2. The user should have ability to add pictures.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Live Demo
+[Enjoy the live project](https://5hraddha.github.io/around-react/)
