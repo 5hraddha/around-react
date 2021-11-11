@@ -1,14 +1,16 @@
-import React from 'react';
+import React      from 'react';
+import PropTypes  from 'prop-types';
 
+/**
+ * The **PopupWithForm** component representing a popup with a form in it
+ *
+ * @version 0.0.1
+ * @author [Shraddha](https://github.com/5hraddha)
+ */
 function PopupWithForm(props) {
-  // Get children of the PopupWithForm component from the props
   const { children } = props;
-
-  // Get event handlers from the props
   const { onClose } = props;
-
-  // Get other values from the props
-  const {name, title, btnLabel, isOpen} = props;
+  const { name, title, btnLabel, isOpen } = props;
 
   return (
     <div className={`popup popup_rel_${name} ${isOpen && 'popup_opened'}`}>
@@ -32,6 +34,21 @@ function PopupWithForm(props) {
     </div>
   </div>
   );
+}
+
+PopupWithForm.propTypes = {
+  /** Any form elements like input, label, etc */
+  children  : PropTypes.any,
+  /** A *callback function* that handles closing of the popup */
+  onClose   : PropTypes.func.isRequired,
+  /** A string representing the **name of the form** */
+  name      : PropTypes.string.isRequired,
+  /** A string representing the **title of the form** */
+  title     : PropTypes.string.isRequired,
+  /** A string representing the **label** of the Submit button */
+  btnLabel  : PropTypes.string.isRequired,
+  /** A boolean indicating if the popup is open or closed */
+  isOpen    : PropTypes.bool,
 }
 
 export default PopupWithForm;

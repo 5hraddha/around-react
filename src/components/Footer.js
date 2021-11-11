@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * The **Footer** component representing the footer of the webpage
+ *
+ * @version 0.0.1
+ * @author [Shraddha](https://github.com/5hraddha)
+ */
 function Footer() {
   return (
     <footer className="footer">

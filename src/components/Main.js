@@ -1,7 +1,14 @@
-import React      from 'react';
-import api        from '../utils/api';
-import Card       from './Card';
+import React        from 'react';
+import PropTypes    from 'prop-types';
+import api          from '../utils/api';
+import Card         from './Card';
 
+/**
+ * The **Main** component representing the main content of the webpage.
+ *
+ * @version 0.0.1
+ * @author [Shraddha](https://github.com/5hraddha)
+ */
 function Main(props) {
   const [userName, setUserName]                   = React.useState('');
   const [userDescription, setUserDescription]     = React.useState('');
@@ -21,12 +28,14 @@ function Main(props) {
         setUserName(res.name);
         setUserDescription(res.about);
         setUserAvatar(res.avatar);
-      });
+      })
+      .catch(err => console.log(err));
   }, []);
 
   React.useEffect(() => {
     api.getInitialCards()
-      .then(setCards);
+      .then(setCards)
+      .catch(err => console.log(err));
   }, []);
 
   return (
@@ -34,7 +43,7 @@ function Main(props) {
       {/* section containing user info, functionality to edit it and to add new images */}
       <section className="profile">
         <div className="profile__avatar-container">
-          <img className="profile__avatar" src={userAvatar} alt="profile picture" />
+          <img className="profile__avatar" src={userAvatar} alt="profile avatar" />
           <button
                   className="profile__avatar-update-button"
                   type="button"
@@ -70,6 +79,17 @@ function Main(props) {
       </section>
     </main>
   );
+}
+
+Main.propTypes = {
+  /** A *callback function* that handles click on edit profile button */
+  onEditProfileClick: PropTypes.func.isRequired,
+  /** A *callback function* that handles click on add new place button */
+  onAddPlaceClick   : PropTypes.func.isRequired,
+  /** A *callback function* that handles click on edit avatar button */
+  onEditAvatarClick : PropTypes.func.isRequired,
+  /** A *callback function* that handles click on image card */
+  onCardClick       : PropTypes.func.isRequired,
 }
 
 export default Main;
