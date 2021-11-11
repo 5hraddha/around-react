@@ -1,6 +1,12 @@
 import React        from 'react';
 import pageLogo     from '../images/logo.svg';
 
+/**
+ * The **Header** component representing the header of the webpage
+ *
+ * @version 0.0.1
+ * @author [Shraddha](https://github.com/5hraddha)
+ */
 function Header() {
   return (
     <header className="header">

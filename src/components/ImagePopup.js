@@ -1,5 +1,12 @@
-import React from 'react';
+import React      from 'react';
+import PropTypes  from 'prop-types';
 
+/**
+ * The **ImagePopup** component representing image preview popup
+ *
+ * @version 0.0.1
+ * @author [Shraddha](https://github.com/5hraddha)
+ */
 function ImagePopup(props) {
   const {card, onClose} = props;
   return (
@@ -18,6 +25,13 @@ function ImagePopup(props) {
       </div>
     </div>
   );
+}
+
+ImagePopup.propTypes = {
+  /** An *object* having selected card data */
+  card    : PropTypes.object,
+  /** A *callback function* that handles closing of the popup */
+  onClose : PropTypes.func.isRequired,
 }
 
 export default ImagePopup;

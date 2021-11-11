@@ -5,6 +5,12 @@ import PopupWithForm    from './PopupWithForm';
 import ImagePopup       from './ImagePopup';
 import Footer           from './Footer';
 
+/**
+ * The main React **App** component.
+ *
+ * @version 0.0.1
+ * @author [Shraddha](https://github.com/5hraddha)
+ */
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen]   = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen]         = React.useState(false);
@@ -117,7 +123,7 @@ function App() {
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
         {/* confirm delete image card popup box */}
-        <PopupWithForm name="delete" title="Are you sure?" btnLabel="Yes" />
+        <PopupWithForm name="delete" title="Are you sure?" btnLabel="Yes" onClose={closeAllPopups} />
       </div>
     </div>
   );
