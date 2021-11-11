@@ -28,12 +28,14 @@ function Main(props) {
         setUserName(res.name);
         setUserDescription(res.about);
         setUserAvatar(res.avatar);
-      });
+      })
+      .catch(err => console.log(err));
   }, []);
 
   React.useEffect(() => {
     api.getInitialCards()
-      .then(setCards);
+      .then(setCards)
+      .catch(err => console.log(err));
   }, []);
 
   return (
