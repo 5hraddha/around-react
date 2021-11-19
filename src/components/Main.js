@@ -1,7 +1,8 @@
-import React        from 'react';
-import PropTypes    from 'prop-types';
-import api          from '../utils/api';
-import Card         from './Card';
+import React                from 'react';
+import PropTypes            from 'prop-types';
+import api                  from '../utils/api';
+import Card                 from './Card';
+import CurrentUserContext   from '../contexts/CurrentUserContext';
 
 /**
  * The **Main** component representing the main content of the webpage.
@@ -10,9 +11,6 @@ import Card         from './Card';
  * @author [Shraddha](https://github.com/5hraddha)
  */
 function Main(props) {
-  const [userName, setUserName]                   = React.useState('');
-  const [userDescription, setUserDescription]     = React.useState('');
-  const [userAvatar, setUserAvatar]               = React.useState('');
   const [cards, setCards]                         = React.useState([]);
 
   const {
@@ -22,15 +20,7 @@ function Main(props) {
     onCardClick
   } = props;
 
-  React.useEffect(() => {
-    api.getUserData()
-      .then(res => {
-        setUserName(res.name);
-        setUserDescription(res.about);
-        setUserAvatar(res.avatar);
-      })
-      .catch(err => console.log(err));
-  }, []);
+  const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
     api.getInitialCards()
@@ -43,7 +33,7 @@ function Main(props) {
       {/* section containing user info, functionality to edit it and to add new images */}
       <section className="profile">
         <div className="profile__avatar-container">
-          <img className="profile__avatar" src={userAvatar} alt="profile avatar" />
+          <img className="profile__avatar" src={currentUser.avatar} alt="profile avatar" />
           <button
                   className="profile__avatar-update-button"
                   type="button"
@@ -53,7 +43,7 @@ function Main(props) {
         </div>
         <div className="profile__info">
           <div className="profile__main-content">
-            <h1 className="profile__title">{userName}</h1>
+            <h1 className="profile__title">{currentUser.name}</h1>
             <button
                     className="profile__edit-btn"
                     type="button"
@@ -61,7 +51,7 @@ function Main(props) {
                     onClick={onEditProfileClick}>
             </button>
           </div>
-          <p className="profile__subtitle">{userDescription}</p>
+          <p className="profile__subtitle">{currentUser.about}</p>
         </div>
         <button
                 className="profile__add-btn"
