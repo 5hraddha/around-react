@@ -68,26 +68,15 @@ class Api {
   }
 
   /**
-   * Likes an existing image card from the server using a PUT request.
+   * Changes the like status of an existing image card from the server using a PUT | DELETE request.
    * @param {string} cardId The id of image card to be liked.
+   * @param {boolean} isLiked Whether the image card has been liked already
    * @return {Promise} The Promise of the Fetch API call.
    */
-  likeCard = cardId => {
+  changeLikeCardStatus = (cardId, isLiked) => {
+    const method = (isLiked) ? 'DELETE' : 'PUT';
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: "PUT",
-      headers: this._headers
-    })
-      .then(this._checkResponseStatus);
-  }
-
-  /**
-   * Unlikes a liked image card from the server using a DELETE request.
-   * @param {string} cardId The id of image card to be unliked.
-   * @return {Promise} The Promise of the Fetch API call.
-   */
-  unlikeCard = cardId => {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: "DELETE",
+      method,
       headers: this._headers
     })
       .then(this._checkResponseStatus);

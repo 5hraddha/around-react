@@ -9,13 +9,15 @@ import CurrentUserContext   from '../contexts/CurrentUserContext';
  * @author [Shraddha](https://github.com/5hraddha)
  */
 function Card(props){
-  const { card, onCardClick } = props;
+  const { card, onCardClick, onCardLike, onCardDelete } = props;
   const currentUser = React.useContext(CurrentUserContext);
 
   // Check if the current user is the owner of the current card and set className for Delete button accordingly
   const isOwn = card.owner._id === currentUser._id;
   const cardDeleteButtonClassName = (
-    `element__delete-button ${isOwn ? 'element__delete-button_visible' : 'element__delete-button_hidden'}`
+    `element__delete-btn ${isOwn
+      ? 'element__delete-btn_visible'
+      : 'element__delete-btn_hidden'}`
   );
 
   // Check if the card was liked by the current user and set className for Like button accordingly
@@ -23,6 +25,8 @@ function Card(props){
   const cardLikeButtonClassName = `element__like-btn ${(isLiked) && 'element__like-btn_active'}`;
 
   const handleClick = () => onCardClick(card);
+  const handleLikeClick = () => onCardLike(card);
+  const handleDeleteClick = () => onCardDelete(card);
 
   return (
     <li className="element" key={card._id}>
@@ -30,20 +34,34 @@ function Card(props){
       <div className="element__text">
         <h2 className="element__title">{card.name}</h2>
         <div className="element__likes">
-          <button className={cardLikeButtonClassName} type="button" aria-label="Like Image"></button>
+          <button
+                  className={cardLikeButtonClassName}
+                  type="button"
+                  aria-label="Like Image"
+                  onClick={handleLikeClick}>
+          </button>
           <p className="element__like-count">{card.likes.length}</p>
         </div>
       </div>
-      <button className={cardDeleteButtonClassName} type="button" aria-label="Delete Image"></button>
+      <button
+              className={cardDeleteButtonClassName}
+              type="button"
+              aria-label="Delete Image"
+              onClick={handleDeleteClick}>
+      </button>
     </li>
   );
 }
 
 Card.propTypes = {
   /** An *object* having single card data returned from the *API* */
-  card        : PropTypes.object.isRequired,
+  card          : PropTypes.object.isRequired,
   /** A *callback function* that handles click event on the image card */
-  onCardClick : PropTypes.func.isRequired,
+  onCardClick   : PropTypes.func.isRequired,
+  /** A *callback function* that handles click event on the like button */
+  onCardLike    : PropTypes.func.isRequired,
+  /** A *callback function* that handles click event on the delete button */
+  onCardDelete  : PropTypes.func.isRequired,
 };
 
 export default Card;

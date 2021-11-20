@@ -21,9 +21,10 @@ function App() {
   const [currentUser, setCurrentUser]                         = React.useState({});
 
   React.useEffect(() => {
-    api.getUserData()
-    .then(res => setCurrentUser(res))
-    .catch(err => console.log(err));
+    api
+      .getUserData()
+      .then(res => setCurrentUser(res))
+      .catch(err => console.log(err));
   }, []);
 
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
