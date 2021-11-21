@@ -9,13 +9,13 @@ import PropTypes  from 'prop-types';
  */
 function PopupWithForm(props) {
   const { children } = props;
-  const { onClose } = props;
+  const { onClose, onSubmit } = props;
   const { name, title, btnLabel, isOpen } = props;
 
   return (
     <div className={`popup popup_rel_${name} ${isOpen && 'popup_opened'}`}>
     <div className="popup__container">
-      <form className="popup__form" name={name} action="#" noValidate>
+      <form className="popup__form" name={name} action="#" onSubmit={onSubmit} noValidate>
         <h2 className="popup__title">{title}</h2>
         {children}
         <button
@@ -41,6 +41,8 @@ PopupWithForm.propTypes = {
   children  : PropTypes.any,
   /** A *callback function* that handles closing of the popup */
   onClose   : PropTypes.func.isRequired,
+  /** A *callback function* that handles the form submit */
+  // onSubmit   : PropTypes.func.isRequired,
   /** A string representing the **name of the form** */
   name      : PropTypes.string.isRequired,
   /** A string representing the **title of the form** */

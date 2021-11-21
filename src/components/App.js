@@ -3,6 +3,7 @@ import Header               from './Header';
 import Main                 from './Main';
 import PopupWithForm        from './PopupWithForm';
 import ImagePopup           from './ImagePopup';
+import EditProfilePopup     from './EditProfilePopup';
 import Footer               from './Footer';
 import api                  from '../utils/api';
 import CurrentUserContext   from '../contexts/CurrentUserContext';
@@ -31,6 +32,15 @@ function App() {
   const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
   const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true);
   const handleCardClick = card => setSelectedCard(card);
+  const handleUpdateUser = userData => {
+    api
+      .updateUserData(userData)
+      .then(updatedUserData => {
+        setCurrentUser(updatedUserData);
+        closeAllPopups();
+      })
+      .catch(err => console.log(err));
+  }
 
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
@@ -75,33 +85,10 @@ function App() {
           </PopupWithForm>
 
           {/* edit profile popup box */}
-          <PopupWithForm
-            name="profile"
-            title="Edit profile"
-            btnLabel="Save"
+          <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
-            onClose={closeAllPopups}>
-            <input
-              className="popup__input"
-              type="text"
-              id="name-input"
-              name="title"
-              placeholder="Name"
-              minLength="2"
-              maxLength="40"
-              required />
-            <span id="name-input-error" className="popup__error"></span>
-            <input
-              className="popup__input"
-              type="text"
-              id="about-input"
-              name="subtitle"
-              placeholder="About me"
-              minLength="2"
-              maxLength="200"
-              required />
-            <span id="about-input-error" className="popup__error"></span>
-          </PopupWithForm>
+            onClose={closeAllPopups}
+            onUpdateUser={handleUpdateUser} />
 
           {/* add place popup box */}
           <PopupWithForm

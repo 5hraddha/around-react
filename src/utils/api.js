@@ -99,13 +99,13 @@ class Api {
    * @param {string} subtitle The new subtitle or about info of the current user.
    * @return {Promise} The Promise of the Fetch API call.
    */
-  updateUserData = (title, subtitle) => {
+  updateUserData = ({name, about}) => {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: title,
-        about: subtitle
+        name,
+        about,
       })
     })
       .then(this._checkResponseStatus);
