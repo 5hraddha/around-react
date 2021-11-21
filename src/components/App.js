@@ -4,6 +4,7 @@ import Main                 from './Main';
 import PopupWithForm        from './PopupWithForm';
 import ImagePopup           from './ImagePopup';
 import EditProfilePopup     from './EditProfilePopup';
+import EditAvatarPopup      from './EditAvatarPopup';
 import Footer               from './Footer';
 import api                  from '../utils/api';
 import CurrentUserContext   from '../contexts/CurrentUserContext';
@@ -42,6 +43,16 @@ function App() {
       .catch(err => console.log(err));
   }
 
+  const handleUpdateAvatar = newAvatarUrl => {
+    api
+      .updateUserAvatar(newAvatarUrl)
+      .then(updatedUserData => {
+        setCurrentUser(updatedUserData);
+        closeAllPopups();
+      })
+      .catch(err => console.log(err));
+  }
+
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -68,21 +79,10 @@ function App() {
           <Footer />
 
           {/* update avatar popup box */}
-          <PopupWithForm
-            name="avatar"
-            title="Change Profile Picture"
-            btnLabel="Save"
+          <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
-            onClose={closeAllPopups}>
-            <input
-              className="popup__input"
-              type="url"
-              id="avatarlink-input"
-              name="avatarlink"
-              placeholder="Image link"
-              required />
-            <span id="avatarlink-input-error" className="popup__error"></span>
-          </PopupWithForm>
+            onClose={closeAllPopups}
+            onUpdateAvatar={handleUpdateAvatar} />
 
           {/* edit profile popup box */}
           <EditProfilePopup
