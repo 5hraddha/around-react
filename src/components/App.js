@@ -5,6 +5,7 @@ import PopupWithForm        from './PopupWithForm';
 import ImagePopup           from './ImagePopup';
 import EditProfilePopup     from './EditProfilePopup';
 import EditAvatarPopup      from './EditAvatarPopup';
+import AddPlacePopup        from './AddPlacePopup';
 import Footer               from './Footer';
 import api                  from '../utils/api';
 import CurrentUserContext   from '../contexts/CurrentUserContext';
@@ -21,6 +22,14 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen]     = React.useState(false);
   const [selectedCard, setSelectedCard]                       = React.useState(null);
   const [currentUser, setCurrentUser]                         = React.useState({});
+  const [cards, setCards]                                     = React.useState([]);
+
+  React.useEffect(() => {
+    api
+      .getInitialCards()
+        .then(setCards)
+        .catch(err => console.log(err));
+  }, []);
 
   React.useEffect(() => {
     api
@@ -33,6 +42,24 @@ function App() {
   const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
   const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true);
   const handleCardClick = card => setSelectedCard(card);
+
+  const handleCardLike = card => {
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    api
+      .changeLikeCardStatus(card._id, isLiked)
+        .then(newCard =>
+          setCards(state => state.map(c => c._id === card._id ? newCard : c)))
+        .catch(err => console.log(err));
+  }
+
+  const handleCardDelete = card => {
+    api
+      .deleteCard(card._id)
+        .then(() =>
+          setCards(state => state.filter(c => c._id !== card._id)))
+        .catch(err => console.log(err));
+  }
+
   const handleUpdateUser = userData => {
     api
       .updateUserData(userData)
@@ -48,6 +75,16 @@ function App() {
       .updateUserAvatar(newAvatarUrl)
       .then(updatedUserData => {
         setCurrentUser(updatedUserData);
+        closeAllPopups();
+      })
+      .catch(err => console.log(err));
+  }
+
+  const handleAddPlaceSubmit = (cardName, cardImageLink) => {
+    api
+      .addNewCard(cardName, cardImageLink)
+      .then(newCard => {
+        setCards([newCard, ...cards]);
         closeAllPopups();
       })
       .catch(err => console.log(err));
@@ -73,6 +110,9 @@ function App() {
             onAddPlaceClick={handleAddPlaceClick}
             onEditAvatarClick={handleEditAvatarClick}
             onCardClick={handleCardClick}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
+            cards={cards}
           />
 
           {/* page footer */}
@@ -91,31 +131,10 @@ function App() {
             onUpdateUser={handleUpdateUser} />
 
           {/* add place popup box */}
-          <PopupWithForm
-            name="place"
-            title="New Place"
-            btnLabel="Create"
+          <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
-            onClose={closeAllPopups}>
-            <input
-              className="popup__input"
-              type="text"
-              id="place-input"
-              name="name"
-              placeholder="Title"
-              minLength="1"
-              maxLength="30"
-              required />
-            <span id="place-input-error" className="popup__error"></span>
-            <input
-              className="popup__input"
-              type="url"
-              id="link-input"
-              name="link"
-              placeholder="Image link"
-              required />
-            <span id="link-input-error" className="popup__error"></span>
-          </PopupWithForm>
+            onClose={closeAllPopups}
+            onAddPlace={handleAddPlaceSubmit} />
 
           {/* view image popup box */}
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />

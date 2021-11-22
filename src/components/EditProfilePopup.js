@@ -24,6 +24,7 @@ function EditProfilePopup(props) {
         setDescription(value);
         break;
       }
+      default: break;
     }
   }
 
