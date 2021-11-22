@@ -16,10 +16,10 @@ function PopupWithForm(props) {
     <div className={`popup popup_rel_${name} ${isOpen && 'popup_opened'}`}>
     <div className="popup__container">
       <form className="popup__form" name={name} action="#" onSubmit={onSubmit} noValidate>
-        <h2 className="popup__title">{title}</h2>
+        <h2 className={`popup__title popup__title_rel_${name}`}>{title}</h2>
         {children}
         <button
-                className="popup__submit"
+                className={`popup__submit popup__submit_rel_${name}`}
                 type="submit"
                 aria-label={`${btnLabel} ${name}`}>
           {btnLabel}
@@ -42,7 +42,7 @@ PopupWithForm.propTypes = {
   /** A *callback function* that handles closing of the popup */
   onClose   : PropTypes.func.isRequired,
   /** A *callback function* that handles the form submit */
-  // onSubmit   : PropTypes.func.isRequired,
+  onSubmit   : PropTypes.func.isRequired,
   /** A string representing the **name of the form** */
   name      : PropTypes.string.isRequired,
   /** A string representing the **title of the form** */

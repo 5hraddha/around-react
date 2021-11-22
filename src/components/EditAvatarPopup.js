@@ -2,8 +2,12 @@ import React            from 'react';
 import PopupWithForm    from './PopupWithForm';
 
 function EditAvatarPopup(props) {
-  const {isOpen, onClose, onUpdateAvatar} = props;
+  const {isOpen, isDataLoading, onClose, onUpdateAvatar} = props;
   const imageLinkInputRef = React.useRef();
+
+  React.useEffect(() => {
+    imageLinkInputRef.current.value = '';
+  }, [isOpen]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -14,7 +18,7 @@ function EditAvatarPopup(props) {
     <PopupWithForm
       name="avatar"
       title="Change Profile Picture"
-      btnLabel="Save"
+      btnLabel={(isDataLoading) ? 'Saving': 'Save'}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit} >

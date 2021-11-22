@@ -9,7 +9,7 @@ import CurrentUserContext   from '../contexts/CurrentUserContext';
  * @author [Shraddha](https://github.com/5hraddha)
  */
 function Card(props){
-  const { card, onCardClick, onCardLike, onCardDelete } = props;
+  const { card, onCardClick, onCardLike, onCardDeleteClick } = props;
   const currentUser = React.useContext(CurrentUserContext);
 
   // Check if the current user is the owner of the current card and set className for Delete button accordingly
@@ -26,7 +26,7 @@ function Card(props){
 
   const handleClick = () => onCardClick(card);
   const handleLikeClick = () => onCardLike(card);
-  const handleDeleteClick = () => onCardDelete(card);
+  const handleDeleteClick = () => onCardDeleteClick(card);
 
   return (
     <li className="element" key={card._id}>
@@ -55,13 +55,13 @@ function Card(props){
 
 Card.propTypes = {
   /** An *object* having single card data returned from the *API* */
-  card          : PropTypes.object.isRequired,
+  card                : PropTypes.object.isRequired,
   /** A *callback function* that handles click event on the image card */
-  onCardClick   : PropTypes.func.isRequired,
+  onCardClick         : PropTypes.func.isRequired,
   /** A *callback function* that handles click event on the like button */
-  onCardLike    : PropTypes.func.isRequired,
+  onCardLike          : PropTypes.func.isRequired,
   /** A *callback function* that handles click event on the delete button */
-  onCardDelete  : PropTypes.func.isRequired,
+  onCardDeleteClick   : PropTypes.func.isRequired,
 };
 
 export default Card;

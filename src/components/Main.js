@@ -16,8 +16,8 @@ function Main(props) {
     onAddPlaceClick,
     onEditAvatarClick,
     onCardClick,
+    onCardDeleteClick,
     onCardLike,
-    onCardDelete
   } = props;
 
   const currentUser = React.useContext(CurrentUserContext);
@@ -64,7 +64,7 @@ function Main(props) {
               card={card}
               onCardClick={onCardClick}
               onCardLike={onCardLike}
-              onCardDelete={onCardDelete} />)}
+              onCardDeleteClick={onCardDeleteClick} />)}
         </ul>
       </section>
     </main>

@@ -3,7 +3,7 @@ import PopupWithForm        from './PopupWithForm';
 import CurrentUserContext   from '../contexts/CurrentUserContext';
 
 function EditProfilePopup(props) {
-  const {isOpen, onClose, onUpdateUser} = props;
+  const {isOpen, isDataLoading, onClose, onUpdateUser} = props;
   const [name, setName] = React.useState(' ');
   const [description, setDescription] = React.useState(' ');
   const currentUser = React.useContext(CurrentUserContext);
@@ -40,7 +40,7 @@ function EditProfilePopup(props) {
     <PopupWithForm
       name="profile"
       title="Edit profile"
-      btnLabel="Save"
+      btnLabel={(isDataLoading) ? 'Saving': 'Save'}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit} >
