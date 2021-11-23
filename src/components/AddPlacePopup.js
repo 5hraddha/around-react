@@ -2,24 +2,36 @@ import React          from 'react';
 import PopupWithForm  from './PopupWithForm';
 
 function AddPlacePopup(props){
-  const {isOpen, isDataLoading, onClose, onAddPlace} = props;
-  const [cardName, setCardName] = React.useState('');
-  const [cardImageLink, setCardImageLink] = React.useState('');
+  const {isOpen, isDataLoading, onClose, onAddPlace}              = props;
+  const [cardName, setCardName]                                   = React.useState('');
+  const [cardImageLink, setCardImageLink]                         = React.useState('');
+  const [isCardNameValid, setIsCardNameValid]                     = React.useState(true);
+  const [isCardImageLinkValid, setIsCardImageLinkValid]           = React.useState(true);
+  const [cardNameErrorMessage, setCardNameErrorMessage]           = React.useState('');
+  const [cardImageLinkErrorMessage, setCardImageLinkErrorMessage] = React.useState('');
 
   React.useEffect(() => {
     setCardName('');
     setCardImageLink('');
+    setIsCardNameValid(true);
+    setIsCardImageLinkValid(true);
+    setCardNameErrorMessage('');
+    setCardImageLinkErrorMessage('');
   }, [isOpen]);
 
   const handleInputChange = e => {
-    const {name, value} = e.target;
+    const {name, value, validity, validationMessage} = e.target;
     switch (name) {
       case 'name' : {
         setCardName(value);
+        setIsCardNameValid(validity.valid);
+        (!validity.valid) && setCardNameErrorMessage(validationMessage);
         break;
       }
       case 'link': {
         setCardImageLink(value);
+        setIsCardImageLinkValid(validity.valid);
+        (!validity.valid) && setCardImageLinkErrorMessage(validationMessage);
         break;
       }
       default: break;
@@ -40,7 +52,7 @@ function AddPlacePopup(props){
       onClose={onClose}
       onSubmit={handleSubmit}>
       <input
-        className="popup__input"
+        className={`popup__input ${(!isCardNameValid) && `popup__input_type_error`}`}
         type="text"
         id="place-input"
         name="name"
@@ -50,9 +62,13 @@ function AddPlacePopup(props){
         value={cardName}
         onChange={handleInputChange}
         required />
-      <span id="place-input-error" className="popup__error"></span>
+      <span
+        id="place-input-error"
+        className={`popup__error ${(!isCardNameValid) && `popup__error_visible`}`}>
+          {cardNameErrorMessage}
+        </span>
       <input
-        className="popup__input"
+        className={`popup__input ${(!isCardImageLinkValid) && `popup__input_type_error`}`}
         type="url"
         id="link-input"
         name="link"
@@ -60,7 +76,11 @@ function AddPlacePopup(props){
         value={cardImageLink}
         onChange={handleInputChange}
         required />
-      <span id="link-input-error" className="popup__error"></span>
+      <span
+        id="link-input-error"
+        className={`popup__error ${(!isCardImageLinkValid) && `popup__error_visible`}`}>
+          {cardImageLinkErrorMessage}
+        </span>
     </PopupWithForm>
   );
 }

@@ -43,12 +43,8 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    const handleClickClose = () => {
-      if(isEditProfilePopupOpen
-          || isEditAvatarPopupOpen
-          || isAddPlacePopupOpen
-          || isPreviewPlacePopupOpen
-          || isDeletePlacePopupOpen) {
+    const handleClickClose = e => {
+      if(e.target.classList.contains('popup_opened')) {
         closeAllPopups();
       }
     }
