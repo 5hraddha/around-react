@@ -18,8 +18,9 @@ import CurrentUserContext   from '../contexts/CurrentUserContext';
  */
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen]   = React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen]         = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen]     = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen]         = React.useState(false);
+  const [isPreviewPlacePopupOpen, setIsPreviewPlacePopupOpen] = React.useState(false);
   const [isDeletePlacePopupOpen, setIsDeletePlacePopupOpen]   = React.useState(false);
   const [isDataLoading, setIsDataLoading]                     = React.useState(false);
   const [selectedCard, setSelectedCard]                       = React.useState(null);
@@ -41,10 +42,60 @@ function App() {
       .catch(err => console.log(err));
   }, []);
 
+  React.useEffect(() => {
+    const handleClickClose = () => {
+      if(isEditProfilePopupOpen
+          || isEditAvatarPopupOpen
+          || isAddPlacePopupOpen
+          || isPreviewPlacePopupOpen
+          || isDeletePlacePopupOpen) {
+        closeAllPopups();
+      }
+    }
+
+    const handleEscClose = e => {
+      if(e.key === "Escape"){
+        closeAllPopups();
+      }
+    }
+
+    if(isEditProfilePopupOpen
+      || isEditAvatarPopupOpen
+      || isAddPlacePopupOpen
+      || isPreviewPlacePopupOpen
+      || isDeletePlacePopupOpen){
+        document.addEventListener("click", handleClickClose);
+        document.addEventListener("keydown", handleEscClose);
+      }
+
+    return () => {
+      document.removeEventListener("click", handleClickClose);
+      document.removeEventListener("keydown", handleEscClose);
+    }
+  }, [isEditProfilePopupOpen,
+    isEditAvatarPopupOpen,
+    isAddPlacePopupOpen,
+    isPreviewPlacePopupOpen,
+    isDeletePlacePopupOpen] );
+
+  const closeAllPopups = () => {
+    setIsEditProfilePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsPreviewPlacePopupOpen(false);
+    setIsDeletePlacePopupOpen(false);
+    setSelectedCard(null);
+    setSelectedToDeleteCard(null);
+  }
+
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
-  const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
   const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true);
-  const handleCardClick = card => setSelectedCard(card);
+  const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
+
+  const handleCardClick = card => {
+    setSelectedCard(card);
+    setIsPreviewPlacePopupOpen(true);
+  };
 
   const handleCardDeleteClick = card => {
     setSelectedToDeleteCard(card);
@@ -106,15 +157,6 @@ function App() {
       })
       .catch(err => console.log(err))
       .finally(() => setIsDataLoading(false));
-  }
-
-  const closeAllPopups = () => {
-    setIsEditProfilePopupOpen(false);
-    setIsAddPlacePopupOpen(false);
-    setIsDeletePlacePopupOpen(false);
-    setIsEditAvatarPopupOpen(false);
-    setSelectedCard(null);
-    setSelectedToDeleteCard(null);
   }
 
   return (
