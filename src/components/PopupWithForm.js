@@ -4,7 +4,7 @@ import PropTypes  from 'prop-types';
 /**
  * The **PopupWithForm** component representing a popup with a form in it
  *
- * @version 0.0.1
+ * @version 1.0.0
  * @author [Shraddha](https://github.com/5hraddha)
  */
 function PopupWithForm(props) {
@@ -16,7 +16,7 @@ function PopupWithForm(props) {
 
   React.useEffect(() => {
     setIsFormValid(formRef.current.checkValidity());
-  }, [isOpen]);
+  }, [isOpen, formRef]);
 
   const handleChange = () => {
     setIsFormValid(formRef.current.checkValidity());

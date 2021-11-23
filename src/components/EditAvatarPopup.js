@@ -1,6 +1,13 @@
 import React            from 'react';
+import PropTypes        from 'prop-types';
 import PopupWithForm    from './PopupWithForm';
 
+/**
+ * The **EditAvatarPopup** component representing a popup with a form to edit user avatar
+ *
+ * @version 1.0.0
+ * @author [Shraddha](https://github.com/5hraddha)
+ */
 function EditAvatarPopup(props) {
   const {isOpen, isDataLoading, onClose, onUpdateAvatar}  = props;
   const [isImageLinkValid, setIsImageLinkValid]           = React.useState(true);
@@ -46,6 +53,17 @@ function EditAvatarPopup(props) {
         </span>
     </PopupWithForm>
   );
+}
+
+EditAvatarPopup.propTypes = {
+  /** A boolean indicating if the popup is open or closed */
+  isOpen          : PropTypes.bool.isRequired,
+  /** A boolean indicating if the data is getting processed and loaded */
+  isDataLoading   : PropTypes.bool.isRequired,
+  /** A *callback function* that handles closing of the popup */
+  onClose         : PropTypes.func.isRequired,
+  /** A *callback function* that submits the `PATCH` request to the API for updating the current user's avatar  */
+  onUpdateAvatar  : PropTypes.func.isRequired,
 }
 
 export default EditAvatarPopup;

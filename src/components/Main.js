@@ -6,7 +6,7 @@ import CurrentUserContext   from '../contexts/CurrentUserContext';
 /**
  * The **Main** component representing the main content of the webpage.
  *
- * @version 0.0.1
+ * @version 1.0.0
  * @author [Shraddha](https://github.com/5hraddha)
  */
 function Main(props) {
@@ -72,6 +72,8 @@ function Main(props) {
 }
 
 Main.propTypes = {
+  /** An *array* of the existing cards fetched from the server */
+  cards: PropTypes.array.isRequired,
   /** A *callback function* that handles click on edit profile button */
   onEditProfileClick: PropTypes.func.isRequired,
   /** A *callback function* that handles click on add new place button */
@@ -80,6 +82,10 @@ Main.propTypes = {
   onEditAvatarClick : PropTypes.func.isRequired,
   /** A *callback function* that handles click on image card */
   onCardClick       : PropTypes.func.isRequired,
+  /** A *callback function* that handles click on trash icon on the image card */
+  onCardDeleteClick : PropTypes.func.isRequired,
+  /** A *callback function* that handles click on like button */
+  onCardLike        : PropTypes.func.isRequired,
 }
 
 export default Main;

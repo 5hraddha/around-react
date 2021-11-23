@@ -5,7 +5,7 @@ import CurrentUserContext   from '../contexts/CurrentUserContext';
 /**
  * The **Card** component representing an image card in the webpage
  *
- * @version 0.0.1
+ * @version 1.0.0
  * @author [Shraddha](https://github.com/5hraddha)
  */
 function Card(props){

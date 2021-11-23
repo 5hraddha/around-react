@@ -3,7 +3,7 @@ import React from 'react';
 /**
  * The **Footer** component representing the footer of the webpage
  *
- * @version 0.0.1
+ * @version 1.0.0
  * @author [Shraddha](https://github.com/5hraddha)
  */
 function Footer() {

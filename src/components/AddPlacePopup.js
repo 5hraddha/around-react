@@ -1,6 +1,13 @@
 import React          from 'react';
+import PropTypes      from 'prop-types';
 import PopupWithForm  from './PopupWithForm';
 
+/**
+ * The **AddPlacePopup** component representing a popup with a form to add a new place
+ *
+ * @version 1.0.0
+ * @author [Shraddha](https://github.com/5hraddha)
+ */
 function AddPlacePopup(props){
   const {isOpen, isDataLoading, onClose, onAddPlace}              = props;
   const [cardName, setCardName]                                   = React.useState('');
@@ -67,6 +74,7 @@ function AddPlacePopup(props){
         className={`popup__error ${(!isCardNameValid) && `popup__error_visible`}`}>
           {cardNameErrorMessage}
         </span>
+
       <input
         className={`popup__input ${(!isCardImageLinkValid) && `popup__input_type_error`}`}
         type="url"
@@ -83,6 +91,17 @@ function AddPlacePopup(props){
         </span>
     </PopupWithForm>
   );
+}
+
+AddPlacePopup.propTypes = {
+  /** A boolean indicating if the popup is open or closed */
+  isOpen          : PropTypes.bool.isRequired,
+  /** A boolean indicating if the data is getting processed and loaded */
+  isDataLoading   : PropTypes.bool.isRequired,
+  /** A *callback function* that handles closing of the popup */
+  onClose         : PropTypes.func.isRequired,
+  /** A *callback function* that submits the `POST` request to the API for adding a new place  */
+  onAddPlace      : PropTypes.func.isRequired,
 }
 
 export default AddPlacePopup;

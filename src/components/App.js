@@ -13,7 +13,7 @@ import CurrentUserContext   from '../contexts/CurrentUserContext';
 /**
  * The main React **App** component.
  *
- * @version 0.0.1
+ * @version 1.0.0
  * @author [Shraddha](https://github.com/5hraddha)
  */
 function App() {
@@ -32,14 +32,20 @@ function App() {
     api
       .getInitialCards()
         .then(setCards)
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log("Uh-oh! Error occured while fetching the existing cards from the server.");
+          console.log(err);
+        });
   }, []);
 
   React.useEffect(() => {
     api
       .getUserData()
       .then(res => setCurrentUser(res))
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log("Uh-oh! Error occured while fetching the current user data from the server.");
+        console.log(err);
+      });
   }, []);
 
   React.useEffect(() => {
@@ -104,7 +110,10 @@ function App() {
       .changeLikeCardStatus(card._id, isLiked)
         .then(newCard =>
           setCards(state => state.map(c => c._id === card._id ? newCard : c)))
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log("Uh-oh! Error occured while changing the like status of the card.");
+          console.log(err);
+        });
   }
 
   const handleCardDeleteSubmit = card => {
@@ -115,7 +124,10 @@ function App() {
           setCards(state => state.filter(c => c._id !== card._id));
           closeAllPopups();
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log("Uh-oh! Error occured while deleting the selected card from the server.");
+          console.log(err);
+        })
         .finally(() => setIsDataLoading(false));
   }
 
@@ -127,7 +139,10 @@ function App() {
         setCurrentUser(updatedUserData);
         closeAllPopups();
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log("Uh-oh! Error occured while updating the user data to the server.");
+        console.log(err);
+      })
       .finally(() => setIsDataLoading(false));
   }
 
@@ -139,7 +154,10 @@ function App() {
         setCurrentUser(updatedUserData);
         closeAllPopups();
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log("Uh-oh! Error occured while updating the user avatar to the server.");
+        console.log(err);
+      })
       .finally(() => setIsDataLoading(false));
   }
 
@@ -151,7 +169,10 @@ function App() {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log("Uh-oh! Error occured while adding a new card to the server.");
+        console.log(err);
+      })
       .finally(() => setIsDataLoading(false));
   }
 
@@ -159,10 +180,8 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__wrapper">
-          {/* page header */}
           <Header />
 
-          {/* main content of the page */}
           <Main
             onEditProfileClick={handleEditProfileClick}
             onAddPlaceClick={handleAddPlaceClick}
@@ -173,34 +192,28 @@ function App() {
             cards={cards}
           />
 
-          {/* page footer */}
           <Footer />
 
-          {/* update avatar popup box */}
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             isDataLoading={isDataLoading}
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar} />
 
-          {/* edit profile popup box */}
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             isDataLoading={isDataLoading}
             onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser} />
 
-          {/* add place popup box */}
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             isDataLoading={isDataLoading}
             onClose={closeAllPopups}
             onAddPlace={handleAddPlaceSubmit} />
 
-          {/* view image popup box */}
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
-          {/* confirm delete image card popup box */}
           <DeletePlacePopup
             card={selectedToDeleteCard}
             isOpen={isDeletePlacePopupOpen}

@@ -1,7 +1,14 @@
 import React                from 'react';
+import PropTypes            from 'prop-types';
 import PopupWithForm        from './PopupWithForm';
 import CurrentUserContext   from '../contexts/CurrentUserContext';
 
+/**
+ * The **EditProfilePopup** component representing a popup with a form to update the current user data
+ *
+ * @version 1.0.0
+ * @author [Shraddha](https://github.com/5hraddha)
+ */
 function EditProfilePopup(props) {
   const {isOpen, isDataLoading, onClose, onUpdateUser}        = props;
   const [name, setName]                                       = React.useState('');
@@ -15,14 +22,11 @@ function EditProfilePopup(props) {
   React.useEffect(() => {
     setName(currentUser.name || '');
     setDescription(currentUser.about || '');
-  }, [currentUser]);
-
-  React.useEffect(() => {
     setIsNameValid(true);
     setIsDescriptionValid(true);
     setNameErrorMessage('');
     setDescriptionErrorMessage('');
-  }, [isOpen]);
+  }, [currentUser, isOpen]);
 
   const handleInputChange = e => {
     const {name, value, validity, validationMessage} = e.target;
@@ -93,6 +97,17 @@ function EditProfilePopup(props) {
         </span>
     </PopupWithForm>
   );
+}
+
+EditProfilePopup.propTypes = {
+  /** A boolean indicating if the popup is open or closed */
+  isOpen          : PropTypes.bool.isRequired,
+  /** A boolean indicating if the data is getting processed and loaded */
+  isDataLoading   : PropTypes.bool.isRequired,
+  /** A *callback function* that handles closing of the popup */
+  onClose         : PropTypes.func.isRequired,
+  /** A *callback function* that submits the `PATCH` request to the API for updating the current user data  */
+  onUpdateUser    : PropTypes.func.isRequired,
 }
 
 export default EditProfilePopup;

@@ -4,7 +4,7 @@ import PropTypes  from 'prop-types';
 /**
  * The **ImagePopup** component representing image preview popup
  *
- * @version 0.0.1
+ * @version 1.0.0
  * @author [Shraddha](https://github.com/5hraddha)
  */
 function ImagePopup(props) {

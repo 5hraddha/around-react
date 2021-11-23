@@ -22,7 +22,7 @@ class Api {
   _checkResponseStatus = response => {
     return (response.ok)
       ? response.json()
-      : Promise.reject(`Error Code: ${response.status} | Error Msg: ${response.statusText}`);
+      : Promise.reject(`Error Code: ${response.status} | Error Message: ${response.statusText}`);
   }
 
   /**
