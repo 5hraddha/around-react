@@ -11,7 +11,7 @@
 ![around-the-us](https://raw.githubusercontent.com/5hraddha/misc/master/images/around-the-us.png)
 
 **Around the U.S.** is a responsive website where a user can have a collection of the pictures of his journey around the US. The webpage interacts with the API endpoints using REST API calls. As of now, the functionalities available on the webpage are:
-1. When the page loads, all the existing image cards loads from the server.
+1. When the page loads, all the existing image cards load from the server.
 2. When the page loads, the current user's name and about info are loaded from the server.
 3. User can edit and save his profile details to the server.
 4. User can update his avatar by uploading a new image to the server.
